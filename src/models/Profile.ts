@@ -12,9 +12,6 @@ import { ProgrammingLanguage } from './Language';
    * @param hobbies - An array of hobbies of the person.
    * @param contact - The contact information of the person.
    */
-
-
-
 export class Profile {
   private static instance: Profile | null = null;
 

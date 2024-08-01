@@ -3,7 +3,7 @@
 </template>
 <script lang="ts">
 //* VUE
-import { ref } from 'vue'
+import { ref, defineComponent } from 'vue'
 
 //* COMPOSABLES
 
@@ -17,7 +17,8 @@ import { ref } from 'vue'
 
 //* CONTROLLERS
 
-export default {
+export default defineComponent({
+  components: {},
   setup() {
     //* LOAD INITIAL
 
@@ -40,6 +41,6 @@ export default {
       //* METHODS
     }
   }
-}
+})
 </script>
 <style lang="scss" scoped></style>

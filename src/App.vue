@@ -284,6 +284,7 @@ nav a:first-of-type {
 
 .main-content-area {
   grid-area: main-content-area;
+  position: relative;
   /* background-color: blue; */
   margin: 1rem 1rem 1rem 0;
   border-radius: 1rem;
@@ -299,5 +300,11 @@ nav a:first-of-type {
     position: relative;
     height: 100%;
   }
+  .p-dock-mobile {
+    width: fit-content;
+  }
+}
+:deep(.p-megamenu-mobile) .p-megamenu-root-list {
+  display: contents;
 }
 </style>

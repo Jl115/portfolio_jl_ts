@@ -1,45 +1,30 @@
 <template>
-  <div>hi im the home</div>
+  <div>
+    Hi my name is: {{ userProfile.getName() }} <br />
+    and I'm {{ userProfile.getAbout() }}
+  </div>
+  <AvatarComponent />
 </template>
+
 <script lang="ts">
-//* VUE
-import { ref } from 'vue'
+import { ref, defineComponent } from 'vue'
+import { Profile } from '@/models/Profile'
+import AvatarComponent from '@/components/AvatarComponent.vue'
 
-//* COMPOSABLES
-
-//* GRAPHQL
-
-//* VUELIDATE
-
-//* CUSTOM
-
-//* COMPONENTS
-
-//* CONTROLLERS
-
-export default {
+export default defineComponent({
+  name: 'ParentComponent',
+  components: {
+    AvatarComponent
+  },
   setup() {
-    //* LOAD INITIAL
+    // Load initial profile instance
+    const userProfile = ref<Profile>(Profile.getInstance())
 
-    //* VARIABLES
-
-    //* QUERYS
-
-    //* COMPUTED
-
-    //* METHODS
-
-    //* MOUNTED
-
-    //* CREATED
-
-    //* RETURN
     return {
-      //* VARIABLES
-      //* COMPUTED
-      //* METHODS
+      userProfile
     }
   }
-}
+})
 </script>
+
 <style lang="scss" scoped></style>

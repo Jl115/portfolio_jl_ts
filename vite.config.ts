@@ -7,6 +7,7 @@ export default defineConfig({
   base: './', // Specify the base path
   plugins: [
     vue(),
+
   ],
   resolve: {
     alias: {
