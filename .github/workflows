@@ -1,50 +1,29 @@
-name: Build and Deploy to Hostinger
+name: Generate a build and push to another branch
 
 on:
   push:
     branches:
-      - main
+      - main # The branch where you want to trigger the action
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    name: Build and Push
     steps:
-      - name: Checkout code
+      - name: git-checkout
         uses: actions/checkout@v3
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: "14"
-
-      - name: Install dependencies
+      - name: Install all dependencies
         run: npm install
 
-      - name: Build project
+      - name: Build
         run: npm run build
 
-      - name: Checkout build-branch
-        uses: actions/checkout@v3
-        with:
-          ref: build-branch
-
-      - name: Deploy to build-branch
+      - name: Push
+        uses: s0/git-publish-subdir-action@develop
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          # Configure git
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-
-          # Remove all existing files in the build-branch
-          git rm -rf .
-
-          # Copy the new build files from the dist directory
-          cp -r ../dist/* .
-
-          # Add and commit the changes
-          git add .
-          git commit -m "Deploying updated build"
-
-          # Push the changes to build-branch
-          git push origin build-branch
+          REPO: self
+          BRANCH: main # The branch name where you want to push the assets
+          FOLDER: dist # The directory where your assets are generated
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # GitHub will automatically add this - you don't need to bother getting a token
+          MESSAGE: "Build: ({sha}) {msg}" # The commit message
