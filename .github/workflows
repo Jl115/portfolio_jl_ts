@@ -3,7 +3,7 @@ name: Build and Deploy to Hostinger
 on:
   push:
     branches:
-      - main # The branch where you want to trigger the action
+      - main # The branch where you want to trigger the actions
 
 jobs:
   build:
