@@ -3,7 +3,7 @@ name: Build and Deploy to Hostinger
 on:
   push:
     branches:
-      - main # The branch where you want to trigger the actions
+      - main
 
 jobs:
   build:
@@ -15,13 +15,18 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: "14" # Specify your node version
+          node-version: "14"
 
       - name: Install dependencies
         run: npm install
 
       - name: Build project
         run: npm run build
+
+      - name: Checkout build-branch
+        uses: actions/checkout@v3
+        with:
+          ref: build-branch
 
       - name: Deploy to build-branch
         env:
@@ -31,14 +36,8 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
-          # Clone the build-branch into a separate directory
-          git clone --single-branch --branch build-branch https://github.com/Jl115/portfolio_jl_ts.git build-branch
-
-          # Navigate to the build-branch directory
-          cd build-branch
-
           # Remove all existing files in the build-branch
-          rm -rf *
+          git rm -rf .
 
           # Copy the new build files from the dist directory
           cp -r ../dist/* .
