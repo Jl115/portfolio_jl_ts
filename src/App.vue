@@ -27,6 +27,7 @@
           <i v-tooltip.top="item.label" :class="item.icon" style="font-size: 2em"></i>
         </template>
       </Dock>
+      <AvatarComponent />
     </footer>
   </div>
 </template>
@@ -36,6 +37,7 @@ import { ref, onMounted } from 'vue'
 import { RouterLink, RouterView } from 'vue-router'
 import { PrimeIcons } from '@primevue/core/api'
 import { Profile } from './models/Profile'
+import AvatarComponent from '@/components/AvatarComponent.vue'
 
 interface PanelMenuItem {
   label: string
@@ -46,7 +48,8 @@ interface PanelMenuItem {
 export default {
   components: {
     RouterView,
-    RouterLink
+    RouterLink,
+    AvatarComponent
   },
   setup() {
     //* LOAD INITIAL
@@ -279,7 +282,8 @@ nav a:first-of-type {
   justify-content: center;
   align-items: start;
   margin-left: 0.5rem;
-  width: 13rem;
+  margin-right: 1rem;
+  width: 15rem;
 }
 
 .main-content-area {
@@ -294,14 +298,20 @@ nav a:first-of-type {
   grid-area: footer;
   display: flex;
   justify-content: center;
-  margin-bottom: 1rem;
-  height: 5rem;
+  position: relative;
+  /* margin-bottom: 1rem; */
+  height: 6rem;
   .dock {
     position: relative;
     height: 100%;
+    margin-bottom: 1rem;
   }
   .p-dock-mobile {
     width: fit-content;
+    margin-bottom: 1rem;
+  }
+  :deep(.p-dock-list-container) {
+    background-color: rgba(7, 41, 30, 0.202);
   }
 }
 :deep(.p-megamenu-mobile) .p-megamenu-root-list {

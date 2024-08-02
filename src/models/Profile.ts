@@ -1,5 +1,3 @@
-// src/models/Profile.ts
-
 import { Hobby } from './Hobbys';
 import { ProgrammingLanguage } from './Language';
 
@@ -32,25 +30,27 @@ export class Profile {
   // Singleton instance getter
   public static getInstance (): Profile {
     if (this.instance === null) {
-      // Initialize the singleton instance here, for example purposes
       const photography = new Hobby('Photography', 'Capturing moments and exploring creative compositions', 3);
       const hiking = new Hobby('Hiking', 'Enjoying nature and staying active', 2);
+      const gaming = new Hobby('Gaming', 'Competitive and strategic gameplay', 4);
 
-      const javascript = new ProgrammingLanguage('JavaScript', 'Advanced', 5, ['My Portfolio Website', 'E-commerce Application'], 'Experienced with React, Vue.js, and Node.js');
-      const python = new ProgrammingLanguage('Python', 'Intermediate', 2, ['Data Analysis Project'], 'Familiar with Pandas and Scikit-learn');
-
+      const python = new ProgrammingLanguage('Python', 'Advanced', 5, ['Data Analysis Tool', 'Machine Learning Model'], 'Experienced with Pandas, Scikit-learn, TensorFlow');
+      const javascript = new ProgrammingLanguage('JavaScript', 'Advanced', 5, ['E-commerce Platform', 'Real-time Chat Application'], 'Proficient with React, Node.js, Vue.js');
+      const java = new ProgrammingLanguage('Java', 'Intermediate', 3, ['Banking System', 'E-commerce Backend'], 'Good knowledge of Spring Framework and Hibernate');
+      const kotlin = new ProgrammingLanguage('Kotlin', 'Intermediate', 2, ['Android Mobile App'], 'Experience with Android development');
+      const dart = new ProgrammingLanguage('Dart', 'Advanced', 4, ['Cross-platform Mobile App'], 'Skilled in Flutter framework');
 
       this.instance = new Profile(
-        'John Doe',
-        'Software Engineer',
-        'Passionate about creating user-friendly applications...',
-        ['JavaScript', 'Vue.js', 'Python'],
-        [javascript, python],
-        [photography, hiking],
+        'Joel Leimbacher',
+        'Fullstack Engineer',
+        'I am currently working as a Fullstack Engineer with a strong background in application development. My passion for software development was further fueled by the Young Talents Hackathon. I am particularly enthusiastic about web, mobile, and software development. Recently, I completed an online course from Harvard on Dart and Flutter. My current project is a Flutter app that showcases my expertise and creativity. I am looking for new opportunities to apply my skills and learn from industry experts.',
+        ['File Management', 'Swing', 'GUI Development', 'Fullstack Development', 'Cloud Computing', 'DevOps'],
+        [python, javascript, java, kotlin, dart],
+        [photography, hiking, gaming],
         {
-          email: 'john.doe@example.com',
-          phone: '123-456-7890',
-          website: 'https://johndoe.com'
+          email: 'joelbern006@gmail.com',
+          phone: '0787058669',
+          website: 'https://joelleimbacher.tech'
         }
       );
     }
