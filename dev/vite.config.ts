@@ -15,7 +15,7 @@ export default defineConfig({
     }
   },
   build: {
-    outDir: 'dist', // Specify the output directory
+    outDir: '../', // Specify the output directory
     assetsDir: 'assets', // Directory to place generated static assets
     rollupOptions: {
       output: {
