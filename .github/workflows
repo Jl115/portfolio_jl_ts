@@ -1,4 +1,4 @@
-name: Generate a build and push to another branch
+name: Build and Deploy to Hostinger
 
 on:
   push:
@@ -8,28 +8,44 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    name: Build and Push
     steps:
-      - name: Checkout repository
+      - name: Checkout code
         uses: actions/checkout@v3
 
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: "21.6.1" # Specify your node version
+          node-version: "14" # Specify your node version
 
       - name: Install dependencies
         run: npm install
 
-      - name: Build
+      - name: Build project
         run: npm run build
 
-      - name: Push build to another branch
-        uses: s0/git-publish-subdir-action@develop
-        with:
-          directory: dist # The directory where your assets are generated
+      - name: Deploy to build-branch
         env:
-          REPO: self
-          BRANCH: main # The branch name where you want to push the build assets
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # GitHub will automatically add this - you don't need to bother getting a token
-          MESSAGE: "Build: ({sha}) {msg}" # The commit message
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Configure git
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+          # Clone the build-branch into a separate directory
+          git clone --single-branch --branch build-branch https://github.com/Jl115/portfolio_jl_ts.git build-branch
+
+          # Navigate to the build-branch directory
+          cd build-branch
+
+          # Remove all existing files in the build-branch
+          rm -rf *
+
+          # Copy the new build files from the dist directory
+          cp -r ../dist/* .
+
+          # Add and commit the changes
+          git add .
+          git commit -m "Deploying updated build"
+
+          # Push the changes to build-branch
+          git push origin build-branch
