@@ -16,7 +16,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: "14" # Specify your node version
+          node-version: "21.6.1" # Specify your node version
 
       - name: Install dependencies
         run: npm install
@@ -30,6 +30,6 @@ jobs:
           directory: dist # The directory where your assets are generated
         env:
           REPO: self
-          BRANCH: build-branch # The branch name where you want to push the build assets
+          BRANCH: main # The branch name where you want to push the build assets
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # GitHub will automatically add this - you don't need to bother getting a token
           MESSAGE: "Build: ({sha}) {msg}" # The commit message
