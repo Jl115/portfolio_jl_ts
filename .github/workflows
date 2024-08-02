@@ -1,0 +1,35 @@
+name: Generate a build and push to another branch
+
+on:
+  push:
+    branches:
+      - main # The branch where you want to trigger the action
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Build and Push
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "14" # Specify your node version
+
+      - name: Install all dependencies
+        run: npm install
+
+      - name: Build
+        run: npm run build
+
+      - name: Push build to another branch
+        uses: s0/git-publish-subdir-action@develop
+        with:
+          directory: dist # The directory where your assets are generated
+        env:
+          REPO: self
+          BRANCH: build-branch # The branch name where you want to push the build assets
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # GitHub will automatically add this - you don't need to bother getting a token
+          MESSAGE: "Build: ({sha}) {msg}" # The commit message
