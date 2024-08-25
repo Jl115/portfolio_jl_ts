@@ -60,7 +60,6 @@ export default {
 
     onMounted(() => {
       userProfile.value = Profile.getInstance()
-      console.log('\x1b[33m%s\x1b[0m', 'userProfile.value --------------------', userProfile.value)
 
       // Transform user data to MegaMenu items
       items.value = [
@@ -311,7 +310,7 @@ nav a:first-of-type {
     margin-bottom: 1rem;
   }
   :deep(.p-dock-list-container) {
-    background-color: rgba(7, 41, 30, 0.202);
+    background-color: rgba(16, 24, 21, 0.5);
   }
 }
 :deep(.p-megamenu-mobile) .p-megamenu-root-list {
