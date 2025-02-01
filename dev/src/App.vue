@@ -57,10 +57,8 @@ export default {
     const showDrawer = ref(true)
     const home = ref({ icon: 'pi pi-home', url: '/' })
     const items = ref<PanelMenuItem[]>([])
-
     onMounted(() => {
       userProfile.value = Profile.getInstance()
-
       // Transform user data to MegaMenu items
       items.value = [
         {
@@ -221,7 +219,8 @@ export default {
 
 .persistent-drawer {
   position: relative;
-  width: 250px; /* Adjust width as needed */
+  width: 250px;
+  /* Adjust width as needed */
   height: 100vh;
   z-index: auto;
 }
@@ -253,15 +252,18 @@ nav {
   margin-top: 2rem;
   padding-bottom: 1rem;
 }
+
 div a {
   display: inline-block;
   font-size: 1.5rem;
   padding: 0 1rem;
   border-bottom: 1px solid var(--color-border);
 }
+
 div a:hover {
   border-radius: 0.5rem;
 }
+
 nav a.router-link-exact-active {
   color: var(--color-text);
 }
@@ -300,19 +302,23 @@ nav a:first-of-type {
   position: relative;
   /* margin-bottom: 1rem; */
   height: 6rem;
+
   .dock {
     position: relative;
     height: 100%;
     margin-bottom: 1rem;
   }
+
   .p-dock-mobile {
     width: fit-content;
     margin-bottom: 1rem;
   }
+
   :deep(.p-dock-list-container) {
     background-color: rgba(16, 24, 21, 0.5);
   }
 }
+
 :deep(.p-megamenu-mobile) .p-megamenu-root-list {
   display: contents;
 }
